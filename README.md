@@ -105,3 +105,5 @@ gf-vue-admin-better/
 
 - 前端基于开源项目 [vue-admin-better](https://gitee.com/chu1204505056/vue-admin-better)（原作者保留版权），本项目仅做配置层适配，未深度修改原生源码
 - 内置账号 `admin` 为超管（受接口保护不可删除），上线后请立即修改密码
+
+## 下一步准备增加redis数据库
