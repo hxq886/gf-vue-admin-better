@@ -167,9 +167,13 @@ gf -v
 
 ```bash
 # Gitee (国内快)
-git clone https://gitee.com/your-name/gf-vue-admin-better.git
+git clone https://gitee.com/hxq886123/gf-vue-admin-better.git
+
+#Gitcode (国内快)
+git https://gitcode.com/hxq886/gf-vue-admin-better.git
+
 # GitHub
-git clone https://github.com/your-name/gf-vue-admin-better.git
+git clone https://github.com/hxq886/gf-vue-admin-better.git
 
 cd gf-vue-admin-better
 ```
