@@ -28,7 +28,15 @@
 
 ```bash
 # 1. 克隆
-git clone https://gitee.com/your-name/gf-vue-admin-better.git
+# Gitee (国内快)
+git clone https://gitee.com/hxq886123/gf-vue-admin-better.git
+
+#Gitcode (国内快)
+git https://gitcode.com/hxq886/gf-vue-admin-better.git
+
+# GitHub
+git clone https://github.com/hxq886/gf-vue-admin-better.git
+
 cd gf-vue-admin-better
 
 # 2. 初始化数据库 (建库 + RBAC 表 + 种子数据)
