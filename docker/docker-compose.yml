@@ -1,0 +1,46 @@
+# ==============================================================================
+# Docker Compose 一键部署: 应用 + MySQL
+# 用法: docker compose -f docker/docker-compose.yml up -d
+# 首次启动会自动执行 server/resource/sql/init.sql 初始化 RBAC 数据
+# 内置管理员账号: admin / 123456
+# ==============================================================================
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: gfab-mysql
+    restart: always
+    environment:
+      TZ: Asia/Shanghai
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_DATABASE: gf_vue_admin_better
+    # 首次启动自动执行初始化 SQL
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ../server/resource/sql/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-p123456"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  app:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: gfab-app
+    restart: always
+    ports:
+      - "8000:8000"
+    environment:
+      TZ: Asia/Shanghai
+    # 挂载 Docker 专用配置 (数据库连接指向 mysql 服务)
+    # 如需修改数据库密码, 同步修改本文件与 docker/config.yaml
+    volumes:
+      - ./config.yaml:/app/manifest/config/config.yaml:ro
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+volumes:
+  mysql-data:

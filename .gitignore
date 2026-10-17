@@ -1,0 +1,44 @@
+# ==============================================================================
+# gf-vue-admin-better .gitignore
+# ==============================================================================
+
+# ============ 系统与编辑器 ============
+.DS_Store
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.vscode
+*.code-workspace
+
+# ============ 日志与临时文件 ============
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ============ 前端 (web) ============
+web/node_modules/
+web/dist/
+web/.rspack-cache/
+web/**/.eslintcache
+
+# ============ 后端 (server) ============
+server/temp/
+server/manifest/logs/
+# 前端构建产物 (由 make build 注入, 不入库)
+server/resource/public/dist/
+
+# ============ 构建产物 ============
+bin/
+*.exe
+*.test
+*.out
+
+# ============ 环境与敏感配置 ============
+.env.local
+.env.*.local

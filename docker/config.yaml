@@ -1,0 +1,30 @@
+# ==============================================================================
+# Docker 部署专用配置 (由 docker-compose.yml 挂载到容器内覆盖默认配置)
+# 数据库连接指向 compose 内的 mysql 服务 (服务名即主机名)
+# 注意: 密码与 docker-compose.yml 中 MYSQL_ROOT_PASSWORD 保持一致
+# ==============================================================================
+
+server:
+  address:     ":8000"
+  openapiPath: "/api.json"
+  swaggerPath: "/swagger"
+
+logger:
+  level:  "error"
+  stdout: true
+
+database:
+  logger:
+    level: "error"
+  default:
+    link: "mysql:root:123456@tcp(mysql:3306)/gf_vue_admin_better?charset=utf8mb4&parseTime=true"
+
+# 同源部署 (单二进制同时托管前端与API), 无需跨域放行
+cors:
+  enabled: false
+
+# JWT 密钥与有效期 (生产环境请务必修改 key)
+jwt:
+  key: "gf-vue-admin-better-secret-key"
+  timeout: "24h"
+  maxRefresh: "24h"
